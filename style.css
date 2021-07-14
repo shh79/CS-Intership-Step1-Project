@@ -162,6 +162,13 @@ html,body{
     gap: 2px;
     background-color:var(--background-color);
     height: auto;
+    grid-template-areas: 
+    "radical power2 percent one-dive-x"
+    "ce c backspace division"
+    "n7 n8 n9 mul"
+    "n4 n5 n6 minus"
+    "n1 n2 n3 plus"
+    "minus-plus n0 dot equal";
 }
 .flex-center{
     display: flex;
@@ -169,20 +176,19 @@ html,body{
     justify-content: center;
     border: none;
 }
+.flex-center:hover{
+    background-color: var(--background-color);
+}
 .number{
     background-color: rgb(250, 250, 250);
 }
 .func{
     background-color: rgb(240, 240, 240);
 }
-.flex-center:hover{
-    background-color: var(--background-color);
-}
-.History{
+.x3{
     display: none;
 }
 .power3{
-    display: none;
     grid-area: power3;
 }
 .percent {
@@ -256,6 +262,9 @@ html,body{
 }
 .equal {
     grid-area: equal;
+}
+.History{
+    display: none;
 }
 
 
