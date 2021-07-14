@@ -119,16 +119,72 @@ html,body{
 }
 .Operator{
     grid-area: Operator;
-    background-color: pink;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.MemoryOptions{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+}
+.MemoryOptions button{
+    width: 20%;
+    height: 100%;
+    border: none;
+    background-color: var(--background-color)
+}
+#PMID:hover, #MMID:hover, #MSID:hover{
+    background-color: rgb(124, 115, 119);
+}
+.Unvisiable {
+    color: gray;
+}
+.Unvisiable:hover{
+    background-color: var(--background-color);
+}
+.MemoryPage{
+    width: 8%;
+    display: flex;
+}
+.MemoryPage button{
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: var(--background-color)
 }
 .Buttons{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(6,1fr);
     grid-area: Buttons;
-    background-color: red;
+    gap: 2px;
+    background-color:var(--background-color);
     height: auto;
+}
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.number{
+    background-color: rgb(250, 250, 250);
+}
+.func{
+    background-color: rgb(240, 240, 240);
+}
+.flex-center:hover{
+    background-color: var(--background-color);
 }
 .History{
     display: none;
 }
+.x3{
+    display: none;
+}
+
 
 /*@media screen and (min-width:500px){
     .main{
