@@ -181,8 +181,81 @@ html,body{
 .History{
     display: none;
 }
-.x3{
+.power3{
     display: none;
+    grid-area: power3;
+}
+.percent {
+    grid-area: percent;
+}
+.ce {
+    grid-area: ce;
+}
+.c {
+    grid-area: c;
+}
+.backspace {
+    grid-area: backspace;
+}
+.division {
+    grid-area: division;
+}
+.radical {
+    grid-area: radical;
+}
+.n7 {
+    grid-area: n7;
+}
+.n8 {
+    grid-area: n8;
+}
+.n9 {
+    grid-area: n9;
+}
+.mul {
+    grid-area: mul;
+}
+.power2 {
+    grid-area: power2;
+}
+.n4 {
+    grid-area: n4;
+}
+.n5 {
+    grid-area: n5;
+}
+.n6 {
+    grid-area: n6;
+}
+.minus {
+    grid-area: minus;
+}
+.n1 {
+    grid-area: n1;
+}
+.n2 {
+    grid-area: n2;
+}
+.n3 {
+    grid-area: n3;
+}
+.plus {
+    grid-area: plus;
+}
+.one-dive-x {
+    grid-area: one-dive-x;
+}
+.minus-plus {
+    grid-area: minus-plus;
+}
+.n0 {
+    grid-area: n0;
+}
+.dot {
+    grid-area: dot;
+}
+.equal {
+    grid-area: equal;
 }
 
 
