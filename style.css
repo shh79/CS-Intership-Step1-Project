@@ -1,8 +1,87 @@
-body{
-    background-color: black;
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: minmax(40px,auto);
+    margin: 0 auto;
+    grid-template-areas: 
+    "Bar Bar Bar Bar"
+    "Type Type Type Type"
+    "Number Number Number Number"
+    "Number Number Number Number"
+    "Number Number Number Number"
+    "Operator Operator Operator Operator"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons"
+    "Buttons Buttons Buttons Buttons";
 }
-h1{
-    color: goldenrod;
-    text-align: center;
-    font-size: 100px;
+.Bar{
+    grid-area: Bar;
+    background-color: green;
+}
+.TypeOfCalculator{
+    grid-area: Type;
+    background-color: blue;
+    
+}
+.NumberField{
+    grid-area: Number;
+    background-color: yellow;
+}
+.Operator{
+    grid-area: Operator;
+    background-color: pink;
+}
+.Buttons{
+    grid-area: Buttons;
+    background-color: red;
+    height: auto;
+}
+.History{
+    display: none;
+}
+
+@media screen and (min-width:575px){
+    .main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr minmax(1fr,300px) minmax(1fr,300px);
+        grid-auto-rows: minmax(40px,auto);
+        margin: 0 auto;
+        grid-template-areas: 
+        "Bar Bar Bar Bar Bar"
+        "Type Type Type History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Operator Operator Operator History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History";
+    }
+    .History{
+        display: grid;
+        grid-area: History;
+        background-color: gray;
+        min-width: 300px;
+        max-width: 300px;
+        align-items: start;
+        justify-self: end;
+    }
 }
