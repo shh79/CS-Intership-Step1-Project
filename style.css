@@ -83,7 +83,7 @@ html,body{
     display: flex;
     flex-direction: row;
 }
-.TypeOfCalculator Title{
+.TypeOfCalculator .Title{
     align-items: center;
     justify-content: left;
 }
@@ -107,7 +107,15 @@ html,body{
 }
 .NumberField{
     grid-area: Number;
-    background-color: yellow;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: row-reverse;
+}
+.NumberField .input{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 60px;
 }
 .Operator{
     grid-area: Operator;
