@@ -327,7 +327,37 @@ html,body{
     }
 }
 @media screen and (min-width:740px){
-    
+    .main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr fit-content(50%) fit-content(50%);
+        margin: 0 auto;
+        grid-template-areas: 
+        "Bar Bar Bar Bar Bar"
+        "Type Type Type History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Operator Operator Operator History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History"
+        "Buttons Buttons Buttons History History";
+    }
+    .History{
+        display: grid;
+        width: 295px;
+        align-self: start;
+        justify-self: right;
+        height: 100%;
+    }
 }
 @media screen and (min-height:620px) and (min-width:1024px){
     .power3{
