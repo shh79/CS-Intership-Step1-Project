@@ -329,12 +329,13 @@ html,body{
 @media screen and (min-width:740px){
     
 }
-@media screen and (min-width:1024px){
-    /*.power3{
-        display: grid;
-    }
-    .x3{
-        display: grid;
+@media screen and (min-height:620px) and (min-width:1024px){
+    .power3{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        font-size: 25px;
     }
     .Buttons{
         display: grid;
@@ -349,7 +350,6 @@ html,body{
         "radical n7 n8 n9 mul"
         "power2 n4 n5 n6 minus"
         "power3 n1 n2 n3 plus"
-        "one minus-plus n2 n3 plus"
-        "minus-plus one-dive-x n0 dot equal";
-    }*/
+        "one-dive-x minus-plus n0 dot equal";
+    }
 }
