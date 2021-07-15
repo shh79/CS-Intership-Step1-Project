@@ -107,7 +107,13 @@ html,body{
 .List button:hover{
     background-color: var(--hover-color);
 }
-.HistoryBtnField button{
+#UnknowedBtn img {
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+}
+.HistoryBtnField button {
     width: 45px;
     height: 45px;
     border: none;
@@ -338,6 +344,9 @@ html,body{
         background-color: var(--background-color);
     }
     .HistoryBtnField{
+        display:none;
+    }
+    .MemoryPage{
         display:none;
     }
 }
