@@ -127,15 +127,26 @@ html,body{
 .NumberField{
     grid-area: Number;
     background-color: var(--background-color);
-    display: flex;
-    flex-direction: row-reverse;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% 70%;
+    font-family: var(--number-font);
 }
-.NumberField .input{
+.input{
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-size: 60px;
+    font-size: 250%;
     padding-right:10px;
+    font-weight: 700;
+}
+.tempHistory{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 70%;
+    padding-right:10px;
+    font-weight: 700;
 }
 .Operator{
     grid-area: Operator;
@@ -344,6 +355,18 @@ html,body{
     margin: 2px 0px 0px 2px;
     font-size: 15px;
 }
+.ClearBar{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 1px 1px 1px 1px;
+}
+.recycleBin{
+    padding: 5px 5px 0px 5px;
+}
+.recycleBin:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
 .historyItem:hover, .memoryItem:hover{
     background-color: var(--hover-color);
 }
@@ -352,6 +375,20 @@ html,body{
 }
 .memoryItem:hover button{
     display: block;
+}
+.historyItemSec1{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 15px;
+    font-family: var(--number-font);
+    color: gray;
+}
+.historyItemSec2{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
 }
 .memoryNum{
     margin-right: 20px;
@@ -377,6 +414,7 @@ html,body{
     background-color: var(--underline-color);
     color: var(--background-color);
 }
+
 
 @media screen and (min-width:500px){
     .main{

@@ -1,7 +1,7 @@
 export function toggle(switchNum){
     let history=document.querySelector(".HistorySection");
     let memory=document.querySelector(".MemorySection");
-    let clearBar=document.querySelector(".ClearBar");
+    let clearBar=document.querySelector(".recycleBin");
     switch(switchNum){
         case 'history':
             document.querySelector("#historyBTN").classList.add("UnderLine");
@@ -40,4 +40,46 @@ export function toggle(switchNum){
             break;
     }
 }
+export function clearList(){
+    let label=document.querySelector("#historyBTN");
+    let history=document.querySelector(".HistorySection");
+    let memory=document.querySelector(".MemorySection");
+    let clearBar=document.querySelector(".recycleBin");
+
+    if(label.classList.contains("UnderLine")){
+        history.innerHTML=`<div class="clearMsg">There's no history yet</div>`;
+    }
+    else{
+        memory.innerHTML=`<div class="clearMsg">There's nothing saved in memory</div>`;
+    }
+
+    clearBar.classList.add("hidden");
+}
+export function restoreHistory(element){ //incomplete
+    let back=element.childNodes[1].innerText;
+    back=back.slice(0,back.length-1);
+    let main=element.childNodes[3].innerText;
+    main=main.replace(",","");
+
+    back=Number(back);
+    main=Number(main);
+    console.log(back, main);
+}
+export function removeMemoryItem(item){
+    let section = document.querySelector(".MemorySection");
+    section.removeChild(item);
+    if(section.childNodes.length == 3){
+        document.querySelector(".recycleBin").classList.add("hidden");
+        section.innerHTML=`<div class="clearMsg">There's nothing saved in memory</div>`;
+    }
+}
+export function plusMemoryItem(item){ //incomplete
+    console.log(item);
+}
+export function minusMemoryItem(item){ //incomplete
+    console.log(item);
+}
+
+
+
 
