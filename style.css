@@ -11,6 +11,8 @@ html,body{
 :root {
     --background-color: rgb(230, 230, 230);
     --hover-color: rgb(207, 207, 207);
+    --underline-color: orange;
+    --number-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 .main{
     display: grid;
@@ -301,7 +303,7 @@ html,body{
     align-items: center;
 }
 .UnderLine{
-    border-bottom: 4px orange solid;
+    border-bottom: 4px var(--underline-color) solid;
 }
 .HistoryMessage{
     display: flex;
@@ -310,7 +312,71 @@ html,body{
     background-color: var(--background-color);
     height: 100%;
 }
-
+.HistorySection, .MemorySection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none;
+}
+.Item2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+#historyBTN:hover, #memoryBTN:hover{
+    cursor: pointer;
+}
+.historyItem, .memoryItem{
+    height: 65px;
+    cursor: default;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+}
+.clearMsg{
+    font-family: var(--number-font);
+    font-weight: bold;
+    margin: 2px 0px 0px 2px;
+    font-size: 15px;
+}
+.historyItem:hover, .memoryItem:hover{
+    background-color: var(--hover-color);
+}
+.memoryItem button{
+    display: none;
+}
+.memoryItem:hover button{
+    display: block;
+}
+.memoryNum{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
+}
+.memoryItemBTNs{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    margin-right: 20px;
+}
+.memoryItemBTNs button{
+    border: none;
+    background-color: var(--background-color);
+    width: 35px;
+    height: 27px;
+    padding: 2px 1px 2px 1px;
+}
+.memoryItemBTNs button:hover{
+    background-color: var(--underline-color);
+    color: var(--background-color);
+}
 
 @media screen and (min-width:500px){
     .main{

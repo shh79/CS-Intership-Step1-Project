@@ -92,15 +92,49 @@
             <div class="wrapper">
                 <div class="Item1">
                     <div class="TabItems">
-                        <div class="UnderLine">History</div>
-                        <div>Memory</div>
+                        <div class="UnderLine" id="historyBTN">History</div>
+                        <div id="memoryBTN">Memory</div>
                     </div>
                 </div>
-                <div class="Item2 HistoryMessage">There is no history yet.</div>
+
+                <!-- <div class="Item2 HistoryMessage">There is no history yet.</div> -->
+
+                <div class="Item2">
+                    <div>
+                        <div class="HistorySection">
+                            <div class="historyItem" onclick="RestoreHistory(this);">history</div>
+                            <div class="historyItem">history</div>
+                        </div>
+                        <div class="MemorySection hidden">
+                            <div class="memoryItem">
+                                <p class="memoryNum">635,254</p>
+                                <div class="memoryItemBTNs">
+                                    <button>MC</button>
+                                    <button>M+</button>
+                                    <button>M-</button>
+                                </div>
+                            </div>
+                            <div class="memoryItem">
+                                <p class="memoryNum">25</p>
+                                <div class="memoryItemBTNs">
+                                    <button>MC</button>
+                                    <button>M+</button>
+                                    <button>M-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ClearBar">
+                        <h1>delete bar</h1>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
+
+    <script type="module" src="js/main.js"></script>
 </body>
-<script src="https://kit.fontawesome.com/5d5a7c857f.js" crossorigin="anonymous"></script>
+<script type="module" src="https://kit.fontawesome.com/5d5a7c857f.js" crossorigin="anonymous"></script>
 </html>
