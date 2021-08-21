@@ -92,7 +92,7 @@ export function saveMemory(){
 
     let section=document.querySelector(".MemorySection");
 
-    let ClearMSG=document.querySelector(".clearMsg");
+    let ClearMSG=document.querySelector(".MemorySection").querySelector(".clearMsg");
 
     if(ClearMSG!=null){
         section.innerHTML=``;
@@ -152,7 +152,7 @@ export function HistoryItemAdder(){
     let mainHistory=document.querySelector(".input").innerText;
     let section=document.querySelector(".HistorySection");
 
-    let ClearMSG=document.querySelector(".clearMsg");
+    let ClearMSG=document.querySelector(".HistorySection").querySelector(".clearMsg");
 
     if(ClearMSG!=null){
         section.innerHTML=``;
@@ -233,4 +233,45 @@ export function MMinusOperator(){
     document.querySelector("#MCID").classList.remove("Unvisiable");
     document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
 }
+export function LoadMiniSection(type){
+    let layers=document.querySelector(".LayerHolder").childNodes;
+    let history=document.querySelector(".HistorySection");
+    let memory=document.querySelector(".MemorySection");
 
+    switch(type){
+        case 'History':
+            if(layers[3].classList.contains("hiddenLayer")){//open panel here
+                layers[3].classList.remove("hiddenLayer");
+                layers[1].classList.add("hiddenLayer");
+                layers[5].classList.add("hiddenLayer");
+
+                layers[3].querySelector(".Stage").innerHTML=history.innerHTML;
+                if(history.innerHTML==`<div class="clearMsg">There's no history yet</div>`){
+                    layers[3].querySelector(".MiniRecycleBinH").classList.add("hiddenLayer");
+                }
+            }
+            else{
+                layers[3].classList.add("hiddenLayer");
+                layers[1].classList.remove("hiddenLayer");
+                layers[5].classList.add("hiddenLayer");
+            }
+            break;
+        case 'Memory':
+            if(layers[5].classList.contains("hiddenLayer")){//open panel here
+                layers[5].classList.remove("hiddenLayer");
+                layers[1].classList.add("hiddenLayer");
+                layers[3].classList.add("hiddenLayer");
+            
+                // layers[5].querySelector(".Stage").innerHTML=memory.innerHTML;
+                // if(memory.innerHTML==`<div class="clearMsg">There's nothing saved in memory</div>`){
+                //     layers[5].querySelector(".MiniRecycleBinM").classList.add("hiddenLayer");
+                // }
+            }
+            else{
+                layers[5].classList.add("hiddenLayer");
+                layers[1].classList.remove("hiddenLayer");
+                layers[3].classList.add("hiddenLayer");
+            }
+            break;
+    }
+}

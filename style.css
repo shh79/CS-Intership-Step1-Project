@@ -18,8 +18,6 @@ html,body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 25px 45px repeat(16,1fr);
-    /*grid-auto-rows: minmax(40px,auto);*/
-    /*grid-auto-rows: 40px;*/
     margin: 0 auto;
     height: 100% ;
     grid-template-areas: 
@@ -29,18 +27,18 @@ html,body{
     "Number Number Number Number"
     "Number Number Number Number"
     "Operator Operator Operator Operator"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons";
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder";
 }
 .Bar{
     grid-area: Bar;
@@ -188,6 +186,12 @@ button.Unvisiable {
 button.Unvisiable:hover{
     background-color: var(--background-color);
 }
+.LayerHolder{
+    grid-area: LayerHolder;
+    background-color: var(--background-color);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
 .Buttons{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -195,7 +199,7 @@ button.Unvisiable:hover{
     grid-area: Buttons;
     gap: 2px;
     background-color:var(--background-color);
-    height: auto;
+    height: 100%;
     grid-template-areas: 
     "percent radical power2 one-dive-x"
     "ce c backspace division"
@@ -424,7 +428,50 @@ button.Unvisiable:hover{
     background-color: var(--underline-color);
     color: var(--background-color);
 }
-
+.MiniHistory, .MiniMemory{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 90% 10%;
+    height: 100%;
+    cursor: default;
+    justify-items: right;
+    background-color: var(--background-color);
+}
+.MiniHistory::-webkit-scrollbar, .MiniMemory::-webkit-scrollbar{
+    display: none;
+}
+.hiddenLayer{
+    display: none;
+}
+.MiniClearBar{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 2px;
+    align-items: center;
+}
+.Stage{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+}
+.Stage::-webkit-scrollbar{
+    display: none;
+}
+.Stage div{
+    display: grid;
+    height: 60px;
+    width: 100%;
+    padding-right: 20px;
+}
+.MiniRecycleBinH, .MiniRecycleBinM{
+    height: 100%;
+    width: 50px;
+    padding: 10px 5px 0px 10px;
+}
+.MiniRecycleBinH:hover, .MiniRecycleBinM:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
 
 @media screen and (min-width:500px){
     .main{
@@ -438,18 +485,18 @@ button.Unvisiable:hover{
         "Number Number Number History History"
         "Number Number Number History History"
         "Operator Operator Operator History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History";
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
     }
     .History{
         display: grid;
@@ -457,11 +504,11 @@ button.Unvisiable:hover{
         grid-row: 2 / end;
         background-color: var(--background-color);
     }
-    .HistoryBtnField{
+    .HistoryBtnField, .MemoryPage{
         display:none;
     }
-    .MemoryPage{
-        display:none;
+    .MiniHistory, .MiniMemory{
+        display: none;
     }
 }
 @media screen and (min-width:740px){
@@ -476,18 +523,18 @@ button.Unvisiable:hover{
         "Number Number Number History History"
         "Number Number Number History History"
         "Operator Operator Operator History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History";
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
     }
     .History{
         display: grid;
@@ -512,7 +559,7 @@ button.Unvisiable:hover{
         grid-area: Buttons;
         gap: 2px;
         background-color: var(--background-color);
-        height: auto;
+        height: 100%;
         grid-template-areas: 
         "percent ce c backspace division"
         "radical n7 n8 n9 mul"

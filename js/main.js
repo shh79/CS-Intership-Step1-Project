@@ -44,3 +44,13 @@ document.querySelector("#PMID").addEventListener("click", () => {
 document.querySelector("#MMID").addEventListener("click", () => {
     Op.MMinusOperator();
 });
+
+//History button function
+document.querySelector("#HistoryBtn").addEventListener("click", () => {
+    Op.LoadMiniSection('History');
+});
+
+//Memory button function
+document.querySelector("#MemoryPageID").addEventListener("click", () => {
+    Op.LoadMiniSection('Memory');
+});
