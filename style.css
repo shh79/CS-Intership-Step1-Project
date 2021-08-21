@@ -166,14 +166,8 @@ html,body{
     border: none;
     background-color: var(--background-color)
 }
-#PMID:hover, #MMID:hover, #MSID:hover{
+.MemoryOptions button:hover{
     background-color: rgb(124, 115, 119);
-}
-.Unvisiable {
-    color: gray;
-}
-.Unvisiable:hover{
-    background-color: var(--background-color);
 }
 .MemoryPage{
     width: 8%;
@@ -184,6 +178,15 @@ html,body{
     width: 100%;
     border: none;
     background-color: var(--background-color)
+}
+.MemoryPage button:hover{
+    background-color: rgb(124, 115, 119);
+}
+button.Unvisiable {
+    color: gray;
+}
+button.Unvisiable:hover{
+    background-color: var(--background-color);
 }
 .Buttons{
     display: grid;
@@ -336,7 +339,11 @@ html,body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 82vh;
+    overflow-y: auto;
+}
+.Item2::-webkit-scrollbar{
+    display: none;
 }
 #historyBTN:hover, #memoryBTN:hover{
     cursor: pointer;
@@ -357,6 +364,9 @@ html,body{
 }
 .ClearBar{
     display: flex;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
     flex-direction: row-reverse;
     margin: 1px 1px 1px 1px;
 }

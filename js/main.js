@@ -15,36 +15,32 @@ document.querySelector(".recycleBin").addEventListener("click", () => {
     Op.clearList();
 })
 
-//restore history items
-let historyItems=document.querySelectorAll(".historyItem");
-historyItems.forEach(item => {
-    item.addEventListener("click", () => {
-        Op.restoreHistory(item);
-    });
+//memory save button
+document.querySelector("#MSID").addEventListener("click", () => {
+    Op.saveMemory();
 });
 
-//clear memory item buttons
-let MCBtns=document.querySelectorAll(".memoryClearBTN");
-MCBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        Op.removeMemoryItem(btn.parentNode.parentNode);
-    });
+//Equal button functions
+document.querySelector(".equal").addEventListener("click", () => {
+    Op.HistoryItemAdder();
 });
 
-//plus memory item buttons
-let MPlusBtns=document.querySelectorAll(".memoryPlusBTN");
-MPlusBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        Op.plusMemoryItem(btn.parentNode.parentNode);
-    });
+//Memory Clear(MC) operator
+document.querySelector("#MCID").addEventListener("click", () => {
+    Op.MCOperator();
 });
 
-//minus memory item buttons
-let MMinusBtns=document.querySelectorAll(".memoryMinusBTN");
-MMinusBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        Op.minusMemoryItem(btn.parentNode.parentNode);
-    });
+//Memory Recentlly(MR) operator
+document.querySelector("#MRID").addEventListener("click", () => {
+    Op.MROperator();
 });
 
-window.resizeTo("800px", "800px");
+//Memory + (M+) operator
+document.querySelector("#PMID").addEventListener("click", () => {
+    Op.MPlusOperator();
+});
+
+//Memory - (M-) operator
+document.querySelector("#MMID").addEventListener("click", () => {
+    Op.MMinusOperator();
+});

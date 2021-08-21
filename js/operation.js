@@ -51,35 +51,186 @@ export function clearList(){
     }
     else{
         memory.innerHTML=`<div class="clearMsg">There's nothing saved in memory</div>`;
+        document.querySelector("#MRID").classList.add("Unvisiable");
+        document.querySelector("#MCID").classList.add("Unvisiable");
+        document.querySelector("#MemoryPageID").classList.add("Unvisiable");
     }
 
     clearBar.classList.add("hidden");
 }
-export function restoreHistory(element){ //incomplete
+export function restoreHistory(element){
     let back=element.childNodes[1].innerText;
     back=back.slice(0,back.length-1);
     let main=element.childNodes[3].innerText;
-    main=main.replace(",","");
 
-    back=Number(back);
-    main=Number(main);
-    console.log(back, main);
+    document.querySelector(".tempHistory").innerText=back;
+    document.querySelector(".input").innerText=main;
 }
 export function removeMemoryItem(item){
     let section = document.querySelector(".MemorySection");
     section.removeChild(item);
-    if(section.childNodes.length == 3){
+    if(section.childNodes.length == 0){
         document.querySelector(".recycleBin").classList.add("hidden");
         section.innerHTML=`<div class="clearMsg">There's nothing saved in memory</div>`;
+        document.querySelector("#MRID").classList.add("Unvisiable");
+        document.querySelector("#MCID").classList.add("Unvisiable");
+        document.querySelector("#MemoryPageID").classList.add("Unvisiable");
     }
 }
-export function plusMemoryItem(item){ //incomplete
-    console.log(item);
+export function plusMemoryItem(item){
+    let MNumber=Number(item.querySelector(".memoryNum").innerText.replace(",",""));
+    let INumber=Number(document.querySelector(".input").innerText.replace(",",""));
+    item.querySelector(".memoryNum").innerText=(MNumber+INumber);
 }
-export function minusMemoryItem(item){ //incomplete
-    console.log(item);
+export function minusMemoryItem(item){
+    let MNumber=Number(item.querySelector(".memoryNum").innerText.replace(",",""));
+    let INumber=Number(document.querySelector(".input").innerText.replace(",",""));
+    item.querySelector(".memoryNum").innerText=(MNumber-INumber);
 }
+export function saveMemory(){
+    let number=document.querySelector(".input").innerText;
 
+    let section=document.querySelector(".MemorySection");
 
+    let ClearMSG=document.querySelector(".clearMsg");
 
+    if(ClearMSG!=null){
+        section.innerHTML=``;
+        document.querySelector(".recycleBin").classList.remove("hidden");
+        document.querySelector("#MRID").classList.remove("Unvisiable");
+        document.querySelector("#MCID").classList.remove("Unvisiable");
+        document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+    }
+
+    section.innerHTML=`<div class="memoryItem">
+            <p class="memoryNum">${number}</p>
+            <div class="memoryItemBTNs">
+                <button class="memoryClearBTN">MC</button>
+                <button class="memoryPlusBTN">M+</button>
+                <button class="memoryMinusBTN">M-</button>
+            </div>
+        </div>`+section.innerHTML;
+
+        memoryButtonsReloader();
+
+}
+function historyItemReloader(){
+    let items=document.querySelectorAll(".historyItem");
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            restoreHistory(item);
+        });
+    });
+}
+function memoryButtonsReloader(){
+    //clear memory item buttons
+    let MCBtns=document.querySelectorAll(".memoryClearBTN");
+    MCBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            removeMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+
+    //plus memory item buttons
+    let MPlusBtns=document.querySelectorAll(".memoryPlusBTN");
+    MPlusBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            plusMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+
+    //minus memory item buttons
+    let MMinusBtns=document.querySelectorAll(".memoryMinusBTN");
+    MMinusBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            minusMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+}
+export function HistoryItemAdder(){
+    let tempHistory=document.querySelector(".tempHistory").innerText;
+    let mainHistory=document.querySelector(".input").innerText;
+    let section=document.querySelector(".HistorySection");
+
+    let ClearMSG=document.querySelector(".clearMsg");
+
+    if(ClearMSG!=null){
+        section.innerHTML=``;
+        document.querySelector(".recycleBin").classList.remove("hidden");
+    }
+
+    section.innerHTML=`<div class="historyItem">
+        <div class="historyItemSec1">${tempHistory}=</div>
+        <div class="historyItemSec2">${mainHistory}</div>
+    </div>`+section.innerHTML;
+
+    historyItemReloader();
+}
+export function MCOperator(){
+    let memory=document.querySelector(".MemorySection");
+    memory.innerHTML=`<div class="clearMsg">There's nothing saved in memory</div>`;
+    document.querySelector("#MRID").classList.add("Unvisiable");
+    document.querySelector("#MCID").classList.add("Unvisiable");
+    document.querySelector("#MemoryPageID").classList.add("Unvisiable");
+    document.querySelector(".recycleBin").classList.add("hidden");
+}
+export function MROperator(){
+    let item=document.querySelector(".memoryItem");
+    if(item!=null){
+        document.querySelector(".tempHistory").innerText="";
+        document.querySelector(".input").innerText=item.querySelector(".memoryNum").innerText;
+    }
+}
+export function MPlusOperator(){
+    let item=document.querySelector(".memoryItem");
+    let input=document.querySelector(".input").innerText;
+
+    if(item!=null){
+        item.querySelector(".memoryNum").innerText=
+        Number(item.querySelector(".memoryNum").innerText.replace(",","")) + Number(input.replace(",",""));
+    }
+    else{
+        document.querySelector(".MemorySection").innerHTML=
+        `<div class="memoryItem">
+            <p class="memoryNum">${input}</p>
+            <div class="memoryItemBTNs">
+                <button class="memoryClearBTN">MC</button>
+                <button class="memoryPlusBTN">M+</button>
+                <button class="memoryMinusBTN">M-</button>
+            </div>
+        </div>`;
+        document.querySelector(".recycleBin").classList.remove("hidden");
+        memoryButtonsReloader();
+    }
+
+    document.querySelector("#MRID").classList.remove("Unvisiable");
+    document.querySelector("#MCID").classList.remove("Unvisiable");
+    document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+}
+export function MMinusOperator(){
+    let item=document.querySelector(".memoryItem");
+    let input=document.querySelector(".input").innerText;
+    
+    if(item!=null){
+        item.querySelector(".memoryNum").innerText=
+        Number(item.querySelector(".memoryNum").innerText.replace(",","")) - Number(input.replace(",",""));
+    }
+    else{
+        document.querySelector(".MemorySection").innerHTML=
+        `<div class="memoryItem">
+            <p class="memoryNum">-${input}</p>
+            <div class="memoryItemBTNs">
+                <button class="memoryClearBTN">MC</button>
+                <button class="memoryPlusBTN">M+</button>
+                <button class="memoryMinusBTN">M-</button>
+            </div>
+        </div>`;
+        document.querySelector(".recycleBin").classList.remove("hidden");
+        memoryButtonsReloader();
+    }
+
+    document.querySelector("#MRID").classList.remove("Unvisiable");
+    document.querySelector("#MCID").classList.remove("Unvisiable");
+    document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+}
 
