@@ -415,7 +415,7 @@ button.Unvisiable:hover{
     display: flex;
     flex-direction: row;
     gap: 2px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 .memoryItemBTNs button{
     border: none;
@@ -436,6 +436,7 @@ button.Unvisiable:hover{
     cursor: default;
     justify-items: right;
     background-color: var(--background-color);
+    border-top: 2px solid;
 }
 .MiniHistory::-webkit-scrollbar, .MiniMemory::-webkit-scrollbar{
     display: none;
@@ -450,18 +451,32 @@ button.Unvisiable:hover{
     align-items: center;
 }
 .Stage{
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
     overflow-y: auto;
 }
 .Stage::-webkit-scrollbar{
     display: none;
 }
-.Stage div{
+.StageItem{
     display: grid;
-    height: 60px;
-    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+    height: 70px;
     padding-right: 20px;
+    cursor: default;
+}
+.StageItem:hover{
+    background-color: var(--hover-color);
+}
+.StageItem button{
+    display: none;
+}
+.StageItem:hover button{
+    display: block;
 }
 .MiniRecycleBinH, .MiniRecycleBinM{
     height: 100%;
@@ -471,6 +486,16 @@ button.Unvisiable:hover{
 .MiniRecycleBinH:hover, .MiniRecycleBinM:hover{
     background-color: var(--hover-color);
     cursor: pointer;
+}
+.MiniMemoryNum{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 150%;
+}
+.backMiniHistory{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 100%;
 }
 
 @media screen and (min-width:500px){

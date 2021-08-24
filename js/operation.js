@@ -104,14 +104,17 @@ export function saveMemory(){
 
     section.innerHTML=`<div class="memoryItem">
             <p class="memoryNum">${number}</p>
-            <div class="memoryItemBTNs">
+            <div class="memoryItemBTNs" style="margin-right:20px;">
                 <button class="memoryClearBTN">MC</button>
                 <button class="memoryPlusBTN">M+</button>
                 <button class="memoryMinusBTN">M-</button>
             </div>
         </div>`+section.innerHTML;
 
-        memoryButtonsReloader();
+    memoryButtonsReloader();
+    document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+
+    document.querySelector(".MiniRecycleBinM").classList.remove("hiddenLayer");
 
 }
 function historyItemReloader(){
@@ -146,6 +149,33 @@ function memoryButtonsReloader(){
             minusMemoryItem(btn.parentNode.parentNode);
         });
     });
+
+    //mini section item button
+
+    //mini clear memory item buttons
+    let MiniMCBtns=document.querySelectorAll(".MiniMCBTN");
+    MiniMCBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            MiniRemoveMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+
+    //mini plus memory item buttons
+    let MiniMPlusBtns=document.querySelectorAll(".MiniMPlusBTN");
+    MiniMPlusBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            MiniPlusMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+
+    //mini minus memory item buttons
+    let MiniMMinusBtns=document.querySelectorAll(".MiniMMinusBTN");
+    MiniMMinusBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            MiniMinusMemoryItem(btn.parentNode.parentNode);
+        });
+    });
+
 }
 export function HistoryItemAdder(){
     let tempHistory=document.querySelector(".tempHistory").innerText;
@@ -173,6 +203,8 @@ export function MCOperator(){
     document.querySelector("#MCID").classList.add("Unvisiable");
     document.querySelector("#MemoryPageID").classList.add("Unvisiable");
     document.querySelector(".recycleBin").classList.add("hidden");
+    document.querySelector(".MiniMemory").classList.add("hiddenLayer");
+    document.querySelector(".Buttons").classList.remove("hiddenLayer");
 }
 export function MROperator(){
     let item=document.querySelector(".memoryItem");
@@ -206,6 +238,8 @@ export function MPlusOperator(){
     document.querySelector("#MRID").classList.remove("Unvisiable");
     document.querySelector("#MCID").classList.remove("Unvisiable");
     document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+
+    document.querySelector(".MiniRecycleBinM").classList.remove("hiddenLayer");
 }
 export function MMinusOperator(){
     let item=document.querySelector(".memoryItem");
@@ -216,9 +250,13 @@ export function MMinusOperator(){
         Number(item.querySelector(".memoryNum").innerText.replace(",","")) - Number(input.replace(",",""));
     }
     else{
+        let sym='-';
+        if(input==0){
+            sym='';
+        }
         document.querySelector(".MemorySection").innerHTML=
         `<div class="memoryItem">
-            <p class="memoryNum">-${input}</p>
+            <p class="memoryNum">${sym+input}</p>
             <div class="memoryItemBTNs">
                 <button class="memoryClearBTN">MC</button>
                 <button class="memoryPlusBTN">M+</button>
@@ -232,46 +270,155 @@ export function MMinusOperator(){
     document.querySelector("#MRID").classList.remove("Unvisiable");
     document.querySelector("#MCID").classList.remove("Unvisiable");
     document.querySelector("#MemoryPageID").classList.remove("Unvisiable");
+
+    document.querySelector(".MiniRecycleBinM").classList.remove("hiddenLayer");
 }
 export function LoadMiniSection(type){
-    let layers=document.querySelector(".LayerHolder").childNodes;
+    let layers=document.querySelector(".LayerHolder");
     let history=document.querySelector(".HistorySection");
     let memory=document.querySelector(".MemorySection");
 
+    let buttons=layers.querySelector(".Buttons");
+    let miniHistory=layers.querySelector(".MiniHistory");
+    let miniMemory=layers.querySelector(".MiniMemory");
+
     switch(type){
         case 'History':
-            if(layers[3].classList.contains("hiddenLayer")){//open panel here
-                layers[3].classList.remove("hiddenLayer");
-                layers[1].classList.add("hiddenLayer");
-                layers[5].classList.add("hiddenLayer");
+            if(miniHistory.classList.contains("hiddenLayer")){//open panel here
+                miniHistory.classList.remove("hiddenLayer");
+                buttons.classList.add("hiddenLayer");
+                miniMemory.classList.add("hiddenLayer");
 
-                layers[3].querySelector(".Stage").innerHTML=history.innerHTML;
                 if(history.innerHTML==`<div class="clearMsg">There's no history yet</div>`){
-                    layers[3].querySelector(".MiniRecycleBinH").classList.add("hiddenLayer");
+                    miniHistory.querySelector(".MiniRecycleBinH").classList.add("hiddenLayer");
+                    miniHistory.querySelector(".Stage").innerHTML=history.innerHTML;
                 }
+                else{
+                    miniHistory.querySelector(".Stage").innerHTML=HTMLConverter("get","history");
+                    miniHistory.querySelector(".MiniRecycleBinH").classList.remove("hiddenLayer");
+                }
+
+                miniHistory.querySelectorAll(".StageItem").forEach(item => {
+                    item.addEventListener("click", () => {
+                        restoreHistory(item);
+                    });
+                });
+
             }
             else{
-                layers[3].classList.add("hiddenLayer");
-                layers[1].classList.remove("hiddenLayer");
-                layers[5].classList.add("hiddenLayer");
+                miniHistory.classList.add("hiddenLayer");
+                buttons.classList.remove("hiddenLayer");
+                miniMemory.classList.add("hiddenLayer");
             }
             break;
+
         case 'Memory':
-            if(layers[5].classList.contains("hiddenLayer")){//open panel here
-                layers[5].classList.remove("hiddenLayer");
-                layers[1].classList.add("hiddenLayer");
-                layers[3].classList.add("hiddenLayer");
+            if(!document.querySelector("#MemoryPageID").classList.contains("Unvisiable")){
             
-                // layers[5].querySelector(".Stage").innerHTML=memory.innerHTML;
-                // if(memory.innerHTML==`<div class="clearMsg">There's nothing saved in memory</div>`){
-                //     layers[5].querySelector(".MiniRecycleBinM").classList.add("hiddenLayer");
-                // }
-            }
-            else{
-                layers[5].classList.add("hiddenLayer");
-                layers[1].classList.remove("hiddenLayer");
-                layers[3].classList.add("hiddenLayer");
+                if(miniMemory.classList.contains("hiddenLayer")){//open panel here
+                    miniMemory.classList.remove("hiddenLayer");
+                    buttons.classList.add("hiddenLayer");
+                    miniHistory.classList.add("hiddenLayer");
+                
+                    miniMemory.querySelector(".Stage").innerHTML=HTMLConverter("get","memory");
+                }
+                else{
+                    miniMemory.classList.add("hiddenLayer");
+                    buttons.classList.remove("hiddenLayer");
+                    miniHistory.classList.add("hiddenLayer");
+                    HTMLConverter("set","memory");
+                }
             }
             break;
     }
+
+    memoryButtonsReloader();
 }
+export function DoneWithMiniSections(){
+    let layers=document.querySelector(".LayerHolder");
+    layers.querySelector(".Buttons").classList.remove("hiddenLayer");
+    layers.querySelector(".MiniHistory").classList.add("hiddenLayer");
+    layers.querySelector(".MiniMemory").classList.add("hiddenLayer");
+}
+function HTMLConverter(flag,type){
+    let result=``;
+    if(type=="history"){
+        if(flag=="get"){
+            let historyItems=document.querySelectorAll(".historyItem");
+            historyItems.forEach(item => {
+                result+=`<div class="StageItem">
+                             <div class="backMiniHistory">${item.querySelector(".historyItemSec1").innerText}</div>
+                             <div class="MiniMemoryNum">${item.querySelector(".historyItemSec2").innerText}</div>
+                         </div>`;
+            });
+            return result;
+        }
+    }
+    if(type=="memory"){
+        if(flag=="get"){
+            let memoryItems=document.querySelectorAll(".memoryItem");
+            memoryItems.forEach(item => {
+                result+=`<div class="StageItem">
+                             <p class="MiniMemoryNum">${item.querySelector("p").innerText}</p>
+                             <div class="memoryItemBTNs">
+                                 <button class="MiniMCBTN">MC</button>
+                                 <button class="MiniMPlusBTN">M+</button>
+                                 <button class="MiniMMinusBTN">M-</button>
+                             </div>
+                         </div>`;
+            });
+            return result;
+        }
+        if(flag=="set"){
+            let miniMemoryItems=document.querySelector(".MiniMemory").querySelector(".Stage").querySelectorAll(".StageItem");
+            miniMemoryItems.forEach(item => {
+                result+=`<div class="memoryItem">
+                     <p class="memoryNum">${item.querySelector("p").innerText}</p>
+                     <div class="memoryItemBTNs" style="margin-right:20px;">
+                         <button class="memoryClearBTN">MC</button>
+                         <button class="memoryPlusBTN">M+</button>
+                         <button class="memoryMinusBTN">M-</button>
+                     </div>
+                 </div>`;
+            });
+
+            if(miniMemoryItems.length==0){
+                result=`<div class="clearMsg">There's nothing saved in memory</div>`;
+                document.querySelector("#MCID").classList.add("Unvisiable");
+                document.querySelector("#MRID").classList.add("Unvisiable");
+                document.querySelector("#MemoryPageID").classList.add("Unvisiable");
+            }
+
+            document.querySelector(".MemorySection").innerHTML=result;
+        }
+    }
+}
+function MiniRemoveMemoryItem(item){
+    let section=document.querySelector(".MiniMemory").querySelector(".Stage");
+    section.removeChild(item);
+    if(section.childNodes.length==0){
+        document.querySelector(".MiniRecycleBinM").classList.add("hiddenLayer");
+    }
+}
+function MiniPlusMemoryItem(item){
+    let MNumber=Number(item.querySelector("p").innerText.replace(",",""));
+    let INumber=Number(document.querySelector(".input").innerText.replace(",",""));
+    item.querySelector("p").innerText=(MNumber+INumber);
+}
+function MiniMinusMemoryItem(item){
+    let MNumber=Number(item.querySelector("p").innerText.replace(",",""));
+    let INumber=Number(document.querySelector(".input").innerText.replace(",",""));
+    item.querySelector("p").innerText=(MNumber-INumber);
+}
+export function ClearMiniSection(btn,type){
+    if(type=="history"){
+        document.querySelector(".HistorySection").innerHTML=`<div class="clearMsg">There's no history yet</div>`;
+        document.querySelector(".MiniHistory").querySelector(".Stage").innerHTML=`<div class="clearMsg">There's no history yet</div>`;
+    }
+    if(type=="memory"){
+        document.querySelector(".MiniMemory").querySelector(".Stage").innerHTML=``;
+    }
+    btn.classList.add("hiddenLayer");
+}
+
+

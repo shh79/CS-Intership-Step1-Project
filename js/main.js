@@ -54,3 +54,18 @@ document.querySelector("#HistoryBtn").addEventListener("click", () => {
 document.querySelector("#MemoryPageID").addEventListener("click", () => {
     Op.LoadMiniSection('Memory');
 });
+
+//when resize screen mini history and mini memory is over
+window.addEventListener("resize", () => {
+    if(screen.width >= 500){
+        Op.DoneWithMiniSections();
+    }
+});
+
+//mini clear btn event
+document.querySelector(".MiniRecycleBinH").addEventListener("click", () => {
+    Op.ClearMiniSection(document.querySelector(".MiniRecycleBinH"),"history");
+});
+document.querySelector(".MiniRecycleBinM").addEventListener("click", () => {
+    Op.ClearMiniSection(document.querySelector(".MiniRecycleBinM"),"memory");
+});
