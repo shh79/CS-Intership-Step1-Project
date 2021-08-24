@@ -1,5 +1,6 @@
 import * as Cal from "../js/calculation.js";
 import * as Op from "../js/operation.js";
+import * as Classes from "../js/classes.js";
 
 //history & memory section formed
 Op.toggle('history');
@@ -69,3 +70,39 @@ document.querySelector(".MiniRecycleBinH").addEventListener("click", () => {
 document.querySelector(".MiniRecycleBinM").addEventListener("click", () => {
     Op.ClearMiniSection(document.querySelector(".MiniRecycleBinM"),"memory");
 });
+
+//here we add calculator functions
+
+//C button and CE button event
+document.querySelector(".c").addEventListener("click", () => {
+    Cal.Clear(false);
+});
+document.querySelector(".ce").addEventListener("click", () => {
+    Cal.Clear(true);
+});
+
+//toggle sign button event
+document.querySelector(".minus-plus").addEventListener("click", () => {
+    Cal.ToggleSign();
+});
+
+//backspace button event
+document.querySelector(".backspace").addEventListener("click", () => {
+    Cal.BackSpace();
+});
+
+//buttons of digit events
+let digits = document.querySelectorAll(".number");
+digits.forEach(digit => {
+    digit.addEventListener("click", () => {
+        Cal.GetDigit(digit.innerHTML);
+    });
+});
+
+//button for dot event
+document.querySelector(".dot").addEventListener("click", () => {
+    Cal.DecimalDot();
+});
+
+
+Cal.MainMachine(Cal.temp);
