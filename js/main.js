@@ -1,6 +1,5 @@
 import * as Cal from "../js/calculation.js";
 import * as Op from "../js/operation.js";
-import * as Classes from "../js/classes.js";
 
 //history & memory section formed
 Op.toggle('history');
@@ -104,5 +103,30 @@ document.querySelector(".dot").addEventListener("click", () => {
     Cal.DecimalDot();
 });
 
+//percent button event
+document.querySelector(".percent").addEventListener("click", () => {
+    Cal.Percent();
+});
 
-Cal.MainMachine(Cal.temp);
+//functions buttons event
+document.querySelector(".radical").addEventListener("click", () => {
+    Cal.MainMachine("rad");
+});
+document.querySelector(".power2").addEventListener("click", () => {
+    Cal.MainMachine("sqr");
+});
+document.querySelector(".power3").addEventListener("click", () => {
+    Cal.MainMachine("cube");
+});
+document.querySelector(".plus").addEventListener("click", () => {
+    Cal.MainMachine("+");
+});
+document.querySelector(".minus").addEventListener("click", () => {
+    Cal.MainMachine("-");
+});
+document.querySelector(".mul").addEventListener("click", () => {
+    Cal.MainMachine("*");
+});
+document.querySelector(".division").addEventListener("click", () => {
+    Cal.MainMachine("/");
+});

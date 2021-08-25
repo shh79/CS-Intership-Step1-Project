@@ -1,19 +1,20 @@
-import * as Classes from "../js/classes.js";
-
-export let temp = new Classes.Plus();
-
 //the variable
 let isFunctionCall = false;
 let isAfterDot = false;
 
-export function MainMachine(operation){
+export function MainMachine(symbol){
     let tempHistory=document.querySelector(".tempHistory");
     let input=document.querySelector(".input");
-    if(tempHistory.innerHTML!=``){
-
+    if(!isFunctionCall){
+        if(tempHistory.innerHTML!=``){
+            tempHistory.innerHTML+=` ${symbol} ${input.innerHTML}`;
+        }
+        else{
+            tempHistory.innerHTML=input.innerHTML+` ${symbol}`;
+        }
     }
     else{
-        tempHistory.innerHTML=input.innerHTML+` ${operation.Symbol} `;
+        
     }
 }
 export function Clear(isCE){
@@ -61,5 +62,15 @@ export function DecimalDot(){
     if(!isAfterDot){
         input.innerHTML+=`.`;
         isAfterDot=true;
+    }
+}
+export function Percent(){
+    let input = document.querySelector(".input");
+    let tempHistory = document.querySelector(".tempHistory");
+
+    if(!isFunctionCall){
+        input.innerHTML=(Number(input.innerHTML) / 100);
+        tempHistory.innerHTML+=` ${input.innerHTML}`;
+        isFunctionCall=true;
     }
 }
