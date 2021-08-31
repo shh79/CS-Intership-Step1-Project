@@ -107,6 +107,15 @@ function ShowTempHistory(){
 function ClearTempHistory(){
     TempHistory.splice(0, TempHistory.length);
 }
+export function LoadTempHistory(tempHistory){
+    ClearTempHistory();
+    let temp=tempHistory.split(' ');
+    temp.forEach(item => {
+        TempHistory.push(item);
+    });
+    ShowTempHistory();
+    SpecialWait=true;
+}
 function isSybmol(input){
     let result=false;
     switch(input){

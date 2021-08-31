@@ -1,3 +1,5 @@
+import {LoadTempHistory} from "../js/calculation.js";
+
 export function toggle(switchNum){
     let history=document.querySelector(".HistorySection");
     let memory=document.querySelector(".MemorySection");
@@ -63,7 +65,7 @@ export function restoreHistory(element){
     back=back.slice(0,back.length-1);
     let main=element.childNodes[3].innerText;
 
-    document.querySelector(".tempHistory").innerText=back;
+    LoadTempHistory(back);
     document.querySelector(".input").innerText=main;
 }
 export function removeMemoryItem(item){
