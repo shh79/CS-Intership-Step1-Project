@@ -60,55 +60,7 @@ function RepeatedMath(result, sym, parted){
         case "&#247;": //division symbol
             result/=parted;
             break;
-        // case "&#8730": //radical symbol
-        //     result+=(Math.sqrt(parted));
-        //     break;
-        // case "sqr":
-        //     result+=(parted*parted);
-        //     break;
-        // case "cube":
-        //     result+=(parted*parted*parted);
-        //     break;
-        // case "1/":
-        //     result+=(1/parted);
-        //     break;
     }
-    return result;
-}
-function Calculator2(isEnd){
-    let result=0;
-    let sym='+';
-    let counter=0;
-    TempHistory.forEach(item => {
-        let parted=item.split(' ');
-        let tempSym=parted[2];
-        if(String(parted[1]).includes("(")){
-            let temp=parted[1].split('(');
-            tempSym=temp[0];
-            temp=temp[1].split(')');
-            parted=Number(temp[0]);
-        }
-        else{
-            parted=Number(parted[1]);
-        }
-
-        if(counter!=0){
-            result = RepeatedMath(result,sym,parted);
-        }
-        else{
-            result = RepeatedMath(result,tempSym,parted);
-        }
-        sym=tempSym;
-        ++counter;
-    });
-
-    console.log(result);
-    if(isEnd){
-        let inputData=Number(document.querySelector(".input").innerHTML);
-        result = RepeatedMath(result, sym, inputData);
-    }
-    console.log(result);
-
     return result;
 }
 function Calculator(isEnd){
@@ -256,33 +208,30 @@ export function Percent(){
     let tempHistory = document.querySelector(".tempHistory");
 
     let CalculatedNum=Calculator(false);
-    SpecialWait=true;
 
     if(tempHistory.innerHTML=='' || CalculatedNum==0){
         input.innerHTML='0';
-        return
+        ClearTempHistory();
+        return;
     }
 
     let percented=Number(input.innerHTML) / 100;
 
+    if(TempHistory[TempHistory.length-1] == '+' || TempHistory[TempHistory.length-1] == '-'){
+        percented *= CalculatedNum;
+    }
 
+    TempHistory.push(percented);
+    ShowTempHistory();
+    input.innerHTML=percented;
 
-
-
-
-    tempHistory.innerHTML+=` ${input.innerHTML}`;
-
-    // if(!wait){
-    //     input.innerHTML=(Number(input.innerHTML) / 100);
-    //     tempHistory.innerHTML+=` ${input.innerHTML}`;
-    //     wait=true;
-    // }
+    wait = true;
 }
 export function Mul(){
-    MainMachine(`&#10539;`);
+    MainMachine(`&#10539;`); //multiply symbol
 }
 export function Div(){
-    MainMachine(`&#247;`);
+    MainMachine(`&#247;`); //division symbol
 }
 export function Plus(){
     MainMachine(`+`);
