@@ -14,16 +14,22 @@
                 Calculator
             </div>
             <div class="MainButton">
-                <button class="SpecialBtn" id="Exit"><i class="fas fa-times"></i></button>
+                <button class="SpecialBtn HaveImg" id="Exit">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABDElEQVRoge3ZXQqCQBSG4a8WUdIWbbmBtRq70A8kxBw9fzOc96oukvOg6QwCWZZlLdUD6LyHwDRDf/THTwAjgAG+mG6eYZxnKu4G4DUf4APgITba/u6LGd5nZvDEiCGYB0YcwSwxaghmgVFHME2MGYJpYMwRTBLjhmASGHcEO4MJg2BHMOEQrAQTFsH2YMIj2BamGgRbw1SHYMs9xPDzOcJGrajlmVE/E1etAwO4/PleRU1cWmt/7Ajb5qK27k7VYPbcYsNjSp4TYTFHHnbhMGee2GEwEssOd4zk2skNo7EANMdormLNMBZLcXWM5X5CDeOxKRLHeO7sxDARtqcimGZevQGNvAzNsiyL1xcbE8X3wv0coQAAAABJRU5ErkJggg=="/>
+                </button>
                 <button class="HaveImg" id="Resize"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAASElEQVRYhe2WIRIAIAzDBrf/fxkcrjcQoyaRm2iuqhEAZoa4r195synomiz+qqFXZKP2BhBAAAEEEEAAAQSqRdS1DQ/2BgDsbKnmAy+W4nnpAAAAAElFTkSuQmCC" /></button>
-                <button id="Minimize"><i class="far fa-window-minimize"></i></button>
+                <button id="Minimize">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAK0lEQVRIiWNgGAWjYBSMApLAYQYGhv9UwodhhjLRyLH/aWTuKBgFo2B4AgBNWBR2eLmTkAAAAABJRU5ErkJggg=="/>
+                </button>
             </div>
         </div>
-
+          
         <div class="TypeOfCalculator">
             <div class="List">
                 <div>
-                    <button id="Listbtn"><img src="https://img.icons8.com/material-outlined/24/000000/menu--v4.png" /></i></button>
+                    <button id="Listbtn">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAKElEQVRIiWNgGAXDHjAisf/TwmwmKhs6CgYhGE1Fo4ByMJqKRsEQAADWCQMKYvEFtQAAAABJRU5ErkJggg=="/>
+                    </button>
                 </div>
                 <div class="Title">
                     Standard
@@ -35,12 +41,15 @@
                 </div>
             </div>
             <div class="HistoryBtnField">
-                <button id="HistoryBtn"><img src="https://img.icons8.com/material-outlined/24/000000/time-machine.png" /></button>
+                <button id="HistoryBtn">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABnUlEQVRIid3Vv2oVURAG8N/1JmlCLCzuKwgaBAst/YOiIGosjIWpA4oIGrS1EgtBC32FNHkAnyCIRQQxicFobgSx0ioo/gHNtdhZ7rKeu7sXsYgfHA57vpn5zs4Mc/jfMYqLmMdrbOEbuljADMaaBuviaOF7Cm/Qq1kfMN1EoIcvOIa7hQCbuInDGEcH+3EFLwp2j9CuE+jhV+w/cRsjFT4tzMrS1sPjJgL5upOweYrFxPkRfA2/gekqC+TpStmkMKtfk2ThFxMi3SEEWvo1uTzoL+pQJQBXg1/4VwL7gl//W4HOAH5P8J9S5BM8U93LSxFgZYDIRPCfU85vg5ysEOhE8Fxkd4k/GNzL/GBXgXwee3FclPERJ7AaF9lb4o/Hvppyng715ZJwChM4VDprYy1inE05jeJ9GFyrEUhhLnzfqajj+TD6jpNDBD8jm0fbOFVn/KAgcl11utqySfsjfO43uU0LD/V7fg03ZEUdl3XOAdzCq4LdvSbBi7iADX/Op/LawOlhg+cYwSXZk7kum7BbsjacxzlDPJk7E78BiCOJMrCO34wAAAAASUVORK5CYII="/>
+                </button>
             </div>
         </div>
         
         <div class="NumberField">
-            <div class= "input">0</div>
+            <div class="tempHistory"></div>
+            <div class="input">0</div>
         </div>
         
         <div class="Operator">
@@ -52,55 +61,92 @@
                 <button id="MSID">MS</button>
             </div>
             <div class="MemoryPage">
-                <button class="Unvisiable" id="MemoryPageID">M<sup><i class="fas fa-caret-down"></i></sup></button>
+                <button class="Unvisiable" id="MemoryPageID">M<sup>&#9660;</sup></button>
             </div>
         </div>
         
-        <div class="Buttons">
+        <div class="LayerHolder">
+            <div class="Buttons">
 
-          <button class="func radical flex-center"><div>&#8730</div></button>
-          <button class="func power2 flex-center">
-            <div>x<sup>2</sup></div>
-          </button>
-          <button class="func percent flex-center">%</button>
-          <button class="func one-div-x flex-center"><div><sup><small>1</small></sup>/<small>x</small></div></button>
-          <button class="func ce flex-center">CE</button>
-          <button class="func c flex-center">C</button>
-          <button class="func backspace flex-center"><img src="https://img.icons8.com/material-outlined/24/000000/clear-symbol--v1.png" /></button>
-          <button class="func division flex-center">&div;</button>
-          <button class="number n7 flex-center">7</button>
-          <button class="number n8 flex-center">8</button>
-          <button class="number n9 flex-center">9</button>
-          <button class="func mul flex-center">&times;</button>
-          <button class="number n4 flex-center">4</button>
-          <button class="number n5 flex-center">5</button>
-          <button class="number n6 flex-center">6</button>
-          <button class="func minus flex-center">&minus;</button>
-          <button class="number n1 flex-center">1</button>
-          <button class="number n2 flex-center">2</button>
-          <button class="number n3 flex-center">3</button>
-          <button class="func plus flex-center">+</button>
-          <button class="func minus-plus flex-center"> &#177 </button>
-          <button class="number n0 flex-center">0</button>
-          <button class="func dot flex-center">&#8729</button>
-          <button class="func equal flex-center">=</button>
-          <button class="func x3 power3"><div>x<sup>3</sup></div></button>
-            
+                <button class="func radical flex-center"><div>&#8730;</div></button>
+                <button class="func power2 flex-center">
+                  <div>x<sup>2</sup></div>
+                </button>
+                <button class="func percent flex-center">%</button>
+                <button class="func one-div-x flex-center"><div><sup><small>1</small></sup>/<small>x</small></div></button>
+                <button class="func ce flex-center">CE</button>
+                <button class="func c flex-center">C</button>
+                <button class="func backspace flex-center">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA1UlEQVRIie2UMQ6CQBBFn9Jq6QYK72DCJSy8iFbew8KDWHgPYyUaaz0CrSZYOCawDKyKSyz4CQn8P/l/d3YZ6PCPiIETkDV4rsBUMx+K2MQ8H1LCWsQdEHzXAMiFFBADd+AGTCxtDhjFyIjmDAiAvZArq3ghfGKFGOEyqakNWApxAQZW8Qg4iH4GIoUL6wLGQCrEzN6rstrEetdaVwjYysemwlzbSdXKSwF9h6kLvXeKvLcIPjvkUOEiV4D3awqef7QXvI4KaGHYwbNVxx+Yq+O6Q/t4ADQ6nO4cFSjHAAAAAElFTkSuQmCC"/>
+                </button>
+                <button class="func division flex-center">&div;</button>
+                <button class="number n7 flex-center">7</button>
+                <button class="number n8 flex-center">8</button>
+                <button class="number n9 flex-center">9</button>
+                <button class="func mul flex-center">&times;</button>
+                <button class="number n4 flex-center">4</button>
+                <button class="number n5 flex-center">5</button>
+                <button class="number n6 flex-center">6</button>
+                <button class="func minus flex-center">&minus;</button>
+                <button class="number n1 flex-center">1</button>
+                <button class="number n2 flex-center">2</button>
+                <button class="number n3 flex-center">3</button>
+                <button class="func plus flex-center">+</button>
+                <button class="func minus-plus flex-center"> &#177; </button>
+                <button class="number n0 flex-center">0</button>
+                <button class="func dot flex-center">&#8729;</button>
+                <button class="func equal flex-center">=</button>
+                <button class="func x3 power3"><div>x<sup>3</sup></div></button>
+                  
+            </div>
+            <div class="MiniHistory hiddenLayer">
+                <div class="Stage">
+                   
+                </div>
+                <div class="MiniClearBar">
+                    <div class="MiniRecycleBinH hiddenLayer">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAAAnklEQVRIie2WsQ2DMBBFn1Mwh0dIloQ9MkeoIjYBNrBcOkUuhR1LtokDFH7SFXDov9NR2JBGAyNgAReUlZ7OyEkyRgRhPX6VKMBI2DXSv0nPyLfZTKSnz61nOPEHVzJRAQrg8qfw44j9wFor9LJ3W92pRAp/DannzaIqNFETNVETfXPoMbFWkCzhi5joXkGUldEBA++pSm8+M9BLhscLSfM95wIO35MAAAAASUVORK5CYII="/>
+                    </div>
+                </div>
+            </div>
+            <div class="MiniMemory hiddenLayer">
+                <div class="Stage">
+                     
+                </div>
+                <div class="MiniClearBar">
+                    <div class="MiniRecycleBinM">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAAAnklEQVRIie2WsQ2DMBBFn1Mwh0dIloQ9MkeoIjYBNrBcOkUuhR1LtokDFH7SFXDov9NR2JBGAyNgAReUlZ7OyEkyRgRhPX6VKMBI2DXSv0nPyLfZTKSnz61nOPEHVzJRAQrg8qfw44j9wFor9LJ3W92pRAp/DannzaIqNFETNVETfXPoMbFWkCzhi5joXkGUldEBA++pSm8+M9BLhscLSfM95wIO35MAAAAASUVORK5CYII="/>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="History">
             <div class="wrapper">
                 <div class="Item1">
                     <div class="TabItems">
-                        <div class="UnderLine">History</div>
-                        <div>Memory</div>
+                        <div class="UnderLine" id="historyBTN">History</div>
+                        <div id="memoryBTN">Memory</div>
                     </div>
                 </div>
-                <div class="Item2 HistoryMessage">There is no history yet.</div>
+                <div class="Item2">
+                    <div>
+                        <div class="HistorySection"><div class="clearMsg">There's no history yet</div></div>
+                        
+                        <div class="MemorySection hidden"><div class="clearMsg">There's nothing saved in memory</div></div>
+                    </div>
+                    <div class="ClearBar">
+                        <div class="recycleBin hidden">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAAAnklEQVRIie2WsQ2DMBBFn1Mwh0dIloQ9MkeoIjYBNrBcOkUuhR1LtokDFH7SFXDov9NR2JBGAyNgAReUlZ7OyEkyRgRhPX6VKMBI2DXSv0nPyLfZTKSnz61nOPEHVzJRAQrg8qfw44j9wFor9LJ3W92pRAp/DannzaIqNFETNVETfXPoMbFWkCzhi5joXkGUldEBA++pSm8+M9BLhscLSfM95wIO35MAAAAASUVORK5CYII="/>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
+
+    <script type="module" src="js/main.js"></script>
 </body>
-<script src="https://kit.fontawesome.com/5d5a7c857f.js" crossorigin="anonymous"></script>
 </html>

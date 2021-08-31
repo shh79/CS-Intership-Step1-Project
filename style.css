@@ -11,13 +11,13 @@ html,body{
 :root {
     --background-color: rgb(230, 230, 230);
     --hover-color: rgb(207, 207, 207);
+    --underline-color: orange;
+    --number-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 .main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 25px 45px repeat(16,1fr);
-    /*grid-auto-rows: minmax(40px,auto);*/
-    /*grid-auto-rows: 40px;*/
     margin: 0 auto;
     height: 100% ;
     grid-template-areas: 
@@ -27,18 +27,18 @@ html,body{
     "Number Number Number Number"
     "Number Number Number Number"
     "Operator Operator Operator Operator"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons"
-    "Buttons Buttons Buttons Buttons";
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder";
 }
 .Bar{
     grid-area: Bar;
@@ -125,15 +125,26 @@ html,body{
 .NumberField{
     grid-area: Number;
     background-color: var(--background-color);
-    display: flex;
-    flex-direction: row-reverse;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% 70%;
+    font-family: var(--number-font);
 }
-.NumberField .input{
+.input{
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-size: 60px;
+    font-size: 250%;
     padding-right:10px;
+    font-weight: 700;
+}
+.tempHistory{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 70%;
+    padding-right:10px;
+    font-weight: 700;
 }
 .Operator{
     grid-area: Operator;
@@ -153,14 +164,8 @@ html,body{
     border: none;
     background-color: var(--background-color)
 }
-#PMID:hover, #MMID:hover, #MSID:hover{
+.MemoryOptions button:hover{
     background-color: rgb(124, 115, 119);
-}
-.Unvisiable {
-    color: gray;
-}
-.Unvisiable:hover{
-    background-color: var(--background-color);
 }
 .MemoryPage{
     width: 8%;
@@ -172,6 +177,21 @@ html,body{
     border: none;
     background-color: var(--background-color)
 }
+.MemoryPage button:hover{
+    background-color: rgb(124, 115, 119);
+}
+button.Unvisiable {
+    color: gray;
+}
+button.Unvisiable:hover{
+    background-color: var(--background-color);
+}
+.LayerHolder{
+    grid-area: LayerHolder;
+    background-color: var(--background-color);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
 .Buttons{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -179,7 +199,7 @@ html,body{
     grid-area: Buttons;
     gap: 2px;
     background-color:var(--background-color);
-    height: auto;
+    height: 100%;
     grid-template-areas: 
     "percent radical power2 one-dive-x"
     "ce c backspace division"
@@ -301,7 +321,7 @@ html,body{
     align-items: center;
 }
 .UnderLine{
-    border-bottom: 4px orange solid;
+    border-bottom: 4px var(--underline-color) solid;
 }
 .HistoryMessage{
     display: flex;
@@ -310,7 +330,173 @@ html,body{
     background-color: var(--background-color);
     height: 100%;
 }
-
+.HistorySection, .MemorySection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none;
+}
+.Item2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 82vh;
+    overflow-y: auto;
+}
+.Item2::-webkit-scrollbar{
+    display: none;
+}
+#historyBTN:hover, #memoryBTN:hover{
+    cursor: pointer;
+}
+.historyItem, .memoryItem{
+    height: 65px;
+    cursor: default;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+}
+.clearMsg{
+    font-family: var(--number-font);
+    font-weight: bold;
+    margin: 2px 0px 0px 2px;
+    font-size: 15px;
+}
+.ClearBar{
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    flex-direction: row-reverse;
+    margin: 1px 1px 1px 1px;
+}
+.recycleBin{
+    padding: 5px 5px 0px 5px;
+}
+.recycleBin:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+.historyItem:hover, .memoryItem:hover{
+    background-color: var(--hover-color);
+}
+.memoryItem button{
+    display: none;
+}
+.memoryItem:hover button{
+    display: block;
+}
+.historyItemSec1{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 15px;
+    font-family: var(--number-font);
+    color: gray;
+}
+.historyItemSec2{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
+}
+.memoryNum{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
+}
+.memoryItemBTNs{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    /* margin-right: 20px; */
+}
+.memoryItemBTNs button{
+    border: none;
+    background-color: var(--background-color);
+    width: 35px;
+    height: 27px;
+    padding: 2px 1px 2px 1px;
+}
+.memoryItemBTNs button:hover{
+    background-color: var(--underline-color);
+    color: var(--background-color);
+}
+.MiniHistory, .MiniMemory{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 90% 10%;
+    height: 100%;
+    cursor: default;
+    justify-items: right;
+    background-color: var(--background-color);
+    border-top: 2px solid;
+}
+.MiniHistory::-webkit-scrollbar, .MiniMemory::-webkit-scrollbar{
+    display: none;
+}
+.hiddenLayer{
+    display: none;
+}
+.MiniClearBar{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 2px;
+    align-items: center;
+}
+.Stage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    overflow-y: auto;
+}
+.Stage::-webkit-scrollbar{
+    display: none;
+}
+.StageItem{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+    height: 70px;
+    padding-right: 20px;
+    cursor: default;
+}
+.StageItem:hover{
+    background-color: var(--hover-color);
+}
+.StageItem button{
+    display: none;
+}
+.StageItem:hover button{
+    display: block;
+}
+.MiniRecycleBinH, .MiniRecycleBinM{
+    height: 100%;
+    width: 50px;
+    padding: 10px 5px 0px 10px;
+}
+.MiniRecycleBinH:hover, .MiniRecycleBinM:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+.MiniMemoryNum{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 150%;
+}
+.backMiniHistory{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 100%;
+}
 
 @media screen and (min-width:500px){
     .main{
@@ -324,18 +510,18 @@ html,body{
         "Number Number Number History History"
         "Number Number Number History History"
         "Operator Operator Operator History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History";
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
     }
     .History{
         display: grid;
@@ -343,11 +529,11 @@ html,body{
         grid-row: 2 / end;
         background-color: var(--background-color);
     }
-    .HistoryBtnField{
+    .HistoryBtnField, .MemoryPage{
         display:none;
     }
-    .MemoryPage{
-        display:none;
+    .MiniHistory, .MiniMemory{
+        display: none;
     }
 }
 @media screen and (min-width:740px){
@@ -362,18 +548,18 @@ html,body{
         "Number Number Number History History"
         "Number Number Number History History"
         "Operator Operator Operator History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History"
-        "Buttons Buttons Buttons History History";
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
     }
     .History{
         display: grid;
@@ -398,7 +584,7 @@ html,body{
         grid-area: Buttons;
         gap: 2px;
         background-color: var(--background-color);
-        height: auto;
+        height: 100%;
         grid-template-areas: 
         "percent ce c backspace division"
         "radical n7 n8 n9 mul"
