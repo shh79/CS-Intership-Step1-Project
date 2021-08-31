@@ -13,32 +13,35 @@ function MainMachine(symbol){
     
     if(!wait){
         if(SpecialWait){
-            TempHistory.push(` ${symbol}`);
+            TempHistory.push(symbol);
             SpecialWait=false;
         }
         else{
             switch(symbol){
                 case "sqr":
-                    TempHistory.push(` sqr(${input.innerHTML})`);
+                    TempHistory.push(`sqr(${input.innerHTML})`);
                     SpecialWait=true;
                     break;
                 case "radical":
-                    TempHistory.push(` &#8730;(${input.innerHTML})`);
+                    TempHistory.push(`&#8730;(${input.innerHTML})`);
                     SpecialWait=true;
                     break;
                 case "cube":
-                    TempHistory.push(` cube(${input.innerHTML})`);
+                    TempHistory.push(`cube(${input.innerHTML})`);
                     SpecialWait=true;
                     break;
                 case "DivideX":
-                    TempHistory.push(` 1/(${input.innerHTML})`);
+                    TempHistory.push(`1/(${input.innerHTML})`);
                     SpecialWait=true;
                     break;
                 default:
-                    TempHistory.push(` ${input.innerHTML} ${symbol}`);
+                    TempHistory.push(input.innerHTML);
+                    TempHistory.push(symbol);
             }
-            wait=true;
+
         }
+
+        wait=true;
     }
 
     ShowTempHistory();
@@ -57,24 +60,25 @@ function RepeatedMath(result, sym, parted){
         case "&#247;": //division symbol
             result/=parted;
             break;
-        case "&#8730": //radical symbol
-            result+=(Math.sqrt(parted));
-            break;
-        case "sqr":
-            result+=(parted*parted);
-            break;
-        case "cube":
-            result+=(parted*parted*parted);
-            break;
-        case "1/":
-            result+=(1/parted);
-            break;
+        // case "&#8730": //radical symbol
+        //     result+=(Math.sqrt(parted));
+        //     break;
+        // case "sqr":
+        //     result+=(parted*parted);
+        //     break;
+        // case "cube":
+        //     result+=(parted*parted*parted);
+        //     break;
+        // case "1/":
+        //     result+=(1/parted);
+        //     break;
     }
     return result;
 }
-function Calculator(isEnd){
+function Calculator2(isEnd){
     let result=0;
     let sym='+';
+    let counter=0;
     TempHistory.forEach(item => {
         let parted=item.split(' ');
         let tempSym=parted[2];
@@ -87,15 +91,56 @@ function Calculator(isEnd){
         else{
             parted=Number(parted[1]);
         }
-        
-        result = RepeatedMath(result,sym,parted);
-        
+
+        if(counter!=0){
+            result = RepeatedMath(result,sym,parted);
+        }
+        else{
+            result = RepeatedMath(result,tempSym,parted);
+        }
         sym=tempSym;
+        ++counter;
     });
 
+    console.log(result);
     if(isEnd){
         let inputData=Number(document.querySelector(".input").innerHTML);
         result = RepeatedMath(result, sym, inputData);
+    }
+    console.log(result);
+
+    return result;
+}
+function Calculator(isEnd){
+    let result=0;
+    let sym=``;
+    let inputNum=0;
+    for(let i=0;i<TempHistory.length;++i){
+        if(isSpecialFunc(TempHistory[i]) != false){
+            if(i != 0){
+                result = RepeatedMath(result,sym,isSpecialFunc(TempHistory[i]));
+            }
+            else{
+                result = isSpecialFunc(TempHistory[i]);
+            }            
+        }
+        else if(isSybmol(TempHistory[i])){
+            sym = TempHistory[i];
+        }
+        else{
+            inputNum = Number(TempHistory[i]);
+            if(i == 0){
+                result = inputNum;
+            }
+            else{
+                result = RepeatedMath(result,sym,inputNum);
+            }
+        }
+    }
+
+    if(isEnd){
+        inputNum = Number(document.querySelector(".input").innerHTML);
+        result = RepeatedMath(result,sym,inputNum);
     }
 
     return result;
@@ -104,7 +149,7 @@ function ShowTempHistory(){
     let tempHistory=document.querySelector(".tempHistory");
     tempHistory.innerHTML=``;
     TempHistory.forEach(item => {
-        tempHistory.innerHTML+=item;
+        tempHistory.innerHTML+=` ${item}`;
     });
 }
 function ClearTempHistory(){
@@ -115,9 +160,40 @@ function isSybmol(input){
     switch(input){
         case "+":
         case "-":
-        case ";":
+        case "&#10539;":
+        case "&#247;":
             result=true;
             break;
+    }
+
+    return result;
+}
+function isSpecialFunc(input){
+    let result=false;
+    let sym, num;
+    try{
+        let temp=input.split('(');
+        sym=temp[0];
+        num=Number(temp[1].split(')')[0]);
+        
+        switch(sym){
+            case "sqr":
+                result = (num*num);
+                break;
+            case "&#8730;":
+                result = (Math.sqrt(num));
+                break;
+            case "1/":
+                result = (1/num);
+                break;
+            case "cube":
+                result = (num*num*num);
+                break;
+        }
+        
+    }
+    catch{
+        result=false;
     }
     return result;
 }
@@ -156,10 +232,6 @@ export function GetDigit(digit){
     if(isStart){
         input.innerHTML=``;
         isStart=false;
-    }
-    if(SpecialWait){
-        TempHistory.pop();
-        ShowTempHistory();
     }
     if(input.innerHTML==`0`){
         input.innerHTML=``;
@@ -251,24 +323,22 @@ export function Radical(){
 }
 export function DivideOnX(){
     let input = document.querySelector(".input");
-    let tempHistory = document.querySelector(".tempHistory");
 
     let temp=Number(input.innerHTML);
 
     if(temp!=0){
-        input.innerHTML=(1/temp);
         MainMachine(`DivideX`);
+        input.innerHTML=(1/temp);
     }
     else{
         Finisher();
-        input.innerHTML=`0`;
+        input.innerHTML=`Cannot divide by zero`;
     }
 }
 export function Finisher(){
     let input = document.querySelector(".input");
-    let tempHistory = document.querySelector(".tempHistory");
     
-    input.innerHTML=Calculator(true);
+    input.innerHTML=Calculator(!wait);
     ClearTempHistory();
 
     isStart=true;
