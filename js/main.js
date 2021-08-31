@@ -20,11 +20,6 @@ document.querySelector("#MSID").addEventListener("click", () => {
     Op.saveMemory();
 });
 
-//Equal button functions
-document.querySelector(".equal").addEventListener("click", () => {
-    Op.HistoryItemAdder();
-});
-
 //Memory Clear(MC) operator
 document.querySelector("#MCID").addEventListener("click", () => {
     Op.MCOperator();
@@ -70,6 +65,13 @@ document.querySelector(".MiniRecycleBinM").addEventListener("click", () => {
     Op.ClearMiniSection(document.querySelector(".MiniRecycleBinM"),"memory");
 });
 
+//Equal button functions
+document.querySelector(".equal").addEventListener("click", () => {
+    Cal.Finisher();
+    Op.HistoryItemAdder();
+    document.querySelector(".tempHistory").innerHTML=``;
+});
+
 //here we add calculator functions
 
 //C button and CE button event
@@ -110,23 +112,26 @@ document.querySelector(".percent").addEventListener("click", () => {
 
 //functions buttons event
 document.querySelector(".radical").addEventListener("click", () => {
-    Cal.MainMachine("rad");
+    Cal.Radical();
 });
 document.querySelector(".power2").addEventListener("click", () => {
-    Cal.MainMachine("sqr");
+    Cal.Sqr();
 });
 document.querySelector(".power3").addEventListener("click", () => {
-    Cal.MainMachine("cube");
+    Cal.Cube();
 });
 document.querySelector(".plus").addEventListener("click", () => {
-    Cal.MainMachine("+");
+    Cal.Plus();
 });
 document.querySelector(".minus").addEventListener("click", () => {
-    Cal.MainMachine("-");
+    Cal.Minus();
 });
 document.querySelector(".mul").addEventListener("click", () => {
-    Cal.MainMachine("*");
+    Cal.Mul();
 });
 document.querySelector(".division").addEventListener("click", () => {
-    Cal.MainMachine("/");
+    Cal.Div();
+});
+document.querySelector(".one-div-x").addEventListener("click", () => {
+    Cal.DivideOnX();
 });
