@@ -1,6 +1,13 @@
 import * as Cal from "../js/calculation.js";
 import * as Op from "../js/operation.js";
 
+//variable
+let LastNumberClicked=``;
+
+export function GetLNC(LastDigit){
+    LastNumberClicked=LastDigit;
+}
+
 //history & memory section formed
 Op.toggle('history');
 document.querySelector("#historyBTN").addEventListener("click", () => {
@@ -68,7 +75,7 @@ document.querySelector(".MiniRecycleBinM").addEventListener("click", () => {
 //Equal button functions
 document.querySelector(".equal").addEventListener("click", () => {
     Cal.Finisher();
-    Op.HistoryItemAdder();
+    Op.HistoryItemAdder(LastNumberClicked);
     document.querySelector(".tempHistory").innerHTML=``;
 });
 

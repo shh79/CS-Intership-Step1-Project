@@ -1,8 +1,11 @@
+import * as main from "../js/main.js";
+
 //the variable
 let wait = false;
 let SpecialWait = false;
 let isAfterDot = false;
 let TempHistory=[];
+let isStart=true;
 
 function MainMachine(symbol){
     let tempHistory=document.querySelector(".tempHistory");
@@ -104,6 +107,9 @@ function ShowTempHistory(){
         tempHistory.innerHTML+=item;
     });
 }
+function ClearTempHistory(){
+    TempHistory.splice(0, TempHistory.length);
+}
 function isSybmol(input){
     let result=false;
     switch(input){
@@ -121,7 +127,7 @@ export function Clear(isCE){
     if(!isCE){
         tempHistory.innerHTML=``;
         input.innerHTML=`0`;
-        TempHistory = TempHistory.splice(0, TempHistory.length);
+        ClearTempHistory();
     }
     else{
         input.innerHTML=`0`;
@@ -145,7 +151,12 @@ export function BackSpace(){
     }
 }
 export function GetDigit(digit){
+    main.GetLNC(digit);
     let input = document.querySelector(".input");
+    if(isStart){
+        input.innerHTML=``;
+        isStart=false;
+    }
     if(SpecialWait){
         TempHistory.pop();
         ShowTempHistory();
@@ -258,5 +269,7 @@ export function Finisher(){
     let tempHistory = document.querySelector(".tempHistory");
     
     input.innerHTML=Calculator(true);
-    TempHistory = TempHistory.splice(0, TempHistory.length);
+    ClearTempHistory();
+
+    isStart=true;
 }

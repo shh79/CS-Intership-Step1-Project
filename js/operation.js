@@ -177,7 +177,7 @@ function memoryButtonsReloader(){
     });
 
 }
-export function HistoryItemAdder(){
+export function HistoryItemAdder(LastNumberClicked){
     let tempHistory=document.querySelector(".tempHistory").innerText;
     let mainHistory=document.querySelector(".input").innerText;
     let section=document.querySelector(".HistorySection");
@@ -190,7 +190,7 @@ export function HistoryItemAdder(){
     }
 
     section.innerHTML=`<div class="historyItem">
-        <div class="historyItemSec1">${tempHistory}=</div>
+        <div class="historyItemSec1">${tempHistory} ${LastNumberClicked}=</div>
         <div class="historyItemSec2">${mainHistory}</div>
     </div>`+section.innerHTML;
 
